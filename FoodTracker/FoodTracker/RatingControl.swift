@@ -15,18 +15,26 @@ class RatingControl: UIView {
     var ratingButtons = [UIButton]()
     var spacing = 5
     var stars = 5
-    
+    var toggleStar = false
+    let filledStarImage = UIImage(named: "filledStar")
+    let emptyStarImage = UIImage(named: "emptyStar")
+
 // MARK: Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         for _ in 0..<stars{
             let button = UIButton()
-            button.backgroundColor = UIColor.redColor()
-            button.addTarget(self, action: "ratingButtonPressed:", forControlEvents: .TouchDown)
+            // good stuff: how they set image
+            button.setImage(emptyStarImage, forState: .Normal)
+            button.setImage(filledStarImage, forState: .Selected)
+            button.setImage(filledStarImage, forState: [.Highlighted, .Selected])
+            
+            button.adjustsImageWhenHighlighted = false
+            button.addTarget(self, action: "ratingButtonTapped:", forControlEvents: .TouchDown)
             ratingButtons += [button]
             addSubview(button)
-            
+            updateButtonSelectionStates()
         }
         
     }
@@ -48,17 +56,22 @@ class RatingControl: UIView {
             buttonFrame.origin.x = CGFloat(index*(buttonSize+5))
             button.frame = buttonFrame
         }
+        updateButtonSelectionStates()
     }
     
     // MARK: Button Action
     
-    func ratingButtonPressed(button: UIButton){
-        if (button.backgroundColor == UIColor.redColor()){
-            button.backgroundColor = UIColor.greenColor()
-        } else {
-            button.backgroundColor = UIColor.redColor()
-        }
+    func ratingButtonTapped(button: UIButton) {
+        rating = ratingButtons.indexOf(button)! + 1
         
-        
+        updateButtonSelectionStates()
     }
+    // from example code
+    func updateButtonSelectionStates() {
+        for (index, button) in ratingButtons.enumerate() {
+            // If the index of a button is less than the rating, that button should be selected.
+            button.selected = index < rating
+        }
+    }
+    
 }
