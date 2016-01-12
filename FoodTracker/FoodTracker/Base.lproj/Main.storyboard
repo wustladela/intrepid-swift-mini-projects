@@ -33,7 +33,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-Kg-Lom">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-Kg-Lom">
                                         <rect key="frame" x="231" y="75" width="98" height="30"/>
                                         <state key="normal" title="Set Label Text"/>
                                         <connections>
@@ -42,6 +42,7 @@
                                     </button>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="500" image="DefaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="DHM-pM-SnI">
                                         <rect key="frame" x="0.0" y="117" width="560" height="350"/>
+                                        <color key="backgroundColor" red="0.87301682692307692" green="0.87301682692307692" blue="0.87301682692307692" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="350" id="T90-Gi-sEa"/>

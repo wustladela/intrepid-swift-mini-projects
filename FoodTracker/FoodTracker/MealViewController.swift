@@ -103,5 +103,16 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let text = mealInput.text ?? ""
         saveButton.enabled = !text.isEmpty
     }
+    
+    //tap gestures - tap anywhere to finish editing
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.locationInView(view)
+        if !CGRectContainsPoint(mealInput.frame, touchLocation) && mealInput.isFirstResponder() {
+            mealInput.resignFirstResponder()
+        }
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
 }
 
