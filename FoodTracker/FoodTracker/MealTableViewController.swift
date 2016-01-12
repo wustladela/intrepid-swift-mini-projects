@@ -16,7 +16,11 @@ class MealTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSampleMeals()
+        if let savedMeals = loadMeals() {
+            meals += savedMeals
+        } else {
+            loadSampleMeals()
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -84,7 +88,8 @@ class MealTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        saveMeals()
     }
     
 
@@ -125,9 +130,7 @@ class MealTableViewController: UITableViewController {
     
     
     @IBAction func unwindToMeallist(sender: UIStoryboardSegue){
-       
-        
-        
+
         if let sourceViewController = sender.sourceViewController as?
             MealViewController, meal = sourceViewController.meal {
                 // if editing an existing meal, update it
@@ -136,14 +139,35 @@ class MealTableViewController: UITableViewController {
                     tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Automatic)
                 }
             // add a new meal
-                let newIndexPath = NSIndexPath(forRow: meals.count, inSection: 0)
-                meals.append(meal)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                else {
+                    let newIndexPath = NSIndexPath(forRow: meals.count, inSection: 0)
+                    meals.append(meal)
+                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                }
+                saveMeals()
                 
         } 
         
     }
     
+    // MARK: NSCoding
+    
+    func saveMeals(){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            let alert = UIAlertController(title: "Attention", message: "Meal cannot be saved due to some error. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Success", message: "Meal updated successfully!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func loadMeals() -> [Meal]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Meal.ArchiveURL.path!) as? [Meal]
+    }
     
 }
 
