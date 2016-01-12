@@ -28,6 +28,11 @@ class MealTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        saveMeals()
+    }
 
     func loadSampleMeals(){
         let photo1 = UIImage(named: "photo1")
@@ -144,8 +149,6 @@ class MealTableViewController: UITableViewController {
                     meals.append(meal)
                     tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
                 }
-                saveMeals()
-                
         } 
         
     }
@@ -155,12 +158,12 @@ class MealTableViewController: UITableViewController {
     func saveMeals(){
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path!)
         if !isSuccessfulSave {
-            let alert = UIAlertController(title: "Attention", message: "Meal cannot be saved due to some error. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            let alert = UIAlertController(title: "Attention", message: "Meals cannot be saved due to some error. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Success", message: "Meal updated successfully!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            let alert = UIAlertController(title: "Success", message: "Meals updated successfully!", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
@@ -168,6 +171,10 @@ class MealTableViewController: UITableViewController {
     func loadMeals() -> [Meal]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Meal.ArchiveURL.path!) as? [Meal]
     }
+    
+    // Logan's comments: for larger scale save, disconnect the save barButton from the exit,
+    // and make another class that handles the database and make another view controller from that class that calls saveMeals()
+    
     
 }
 
