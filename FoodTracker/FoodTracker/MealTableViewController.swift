@@ -26,11 +26,11 @@ class MealTableViewController: UITableViewController {
 
     func loadSampleMeals(){
         let photo1 = UIImage(named: "photo1")
-        let meal1 = Meal(name: "Salat", photo: photo1, rating: 4)!
+        let meal1 = Meal(name: "Salads", photo: photo1, rating: 4)!
         let photo2 = UIImage(named: "photo2")
-        let meal2 = Meal(name: "Kartoffln", photo: photo2, rating: 5)!
+        let meal2 = Meal(name: "Sandwiches", photo: photo2, rating: 5)!
         let photo3 = UIImage(named: "photo3")
-        let meal3 = Meal(name: "Noodln", photo: photo3, rating: 3)!
+        let meal3 = Meal(name: "Noodles", photo: photo3, rating: 3)!
         meals+=[meal1, meal2, meal3]
         
         
@@ -107,5 +107,20 @@ class MealTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    @IBAction func unwindToMeallist(sender: UIStoryboardSegue){
+        if let sourceViewController = sender.sourceViewController as?
+            MealViewController, meal = sourceViewController.meal {
+            // add a new meal
+                let newIndexPath = NSIndexPath(forRow: meals.count, inSection: 0)
+                meals.append(meal)
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                
+        } 
+        
+    }
+    
+    
 }
+
+

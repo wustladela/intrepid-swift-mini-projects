@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var mealInput: UITextField!
@@ -18,10 +19,19 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         updateUI()
         mealInput.resignFirstResponder()
     }
+    /*
+    This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
+    or constructed as part of adding a new meal.
+    */
+    var meal: Meal?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         mealInput.delegate = self
+        checkValidMealName()
+        
     }
     // MARK: UIImagePickerControllerDelegate
     // The first of these, imagePickerControllerDidCancel(_:), gets called when a user taps the image picker’s Cancel button. This method gives you a chance to dismiss the UIImagePickerController (and optionally, do any necessary cleanup). Implement imagePickerControllerDidCancel(_:) to do that.
@@ -43,18 +53,30 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         photoImageView.image = selectedImage
         dismissViewControllerAnimated(true) { () -> Void in
-            print ("finished picker!")
         }
     }
     
     // help: how do I keep the original aspect ratio of the image?
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true) { () -> Void in
-            print("canceled picker!")
         }
 
     }
 
+    
+    // MARK: Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if saveButton === sender {
+            let name = self.mealInput.text ?? ""
+            let photo = self.photoImageView.image
+            let rating = self.ratingControl.rating
+            
+            // Set the meal to be passed to MealTableViewController after the unwind segue.
+            meal = Meal(name: name, photo: photo, rating: rating)
+            
+        }
+    }
 
     // MARK: Actions
     
@@ -66,6 +88,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        saveButton.enabled = false
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        checkValidMealName()
+        navigationItem.title = mealInput.text
+    }
+    
+    func checkValidMealName() {
+        let text = mealInput.text ?? ""
+        saveButton.enabled = !text.isEmpty
     }
 }
 
