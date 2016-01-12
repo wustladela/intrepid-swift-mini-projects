@@ -32,6 +32,14 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         mealInput.delegate = self
         checkValidMealName()
         
+        // load existing meal data if it exists
+        if let meal = meal{
+            navigationItem.title = meal.name
+            mealInput.text = meal.name
+            photoImageView.image = meal.photo
+            ratingControl.rating = meal.rating
+        }
+        
     }
     // MARK: UIImagePickerControllerDelegate
     // The first of these, imagePickerControllerDidCancel(_:), gets called when a user taps the image picker’s Cancel button. This method gives you a chance to dismiss the UIImagePickerController (and optionally, do any necessary cleanup). Implement imagePickerControllerDidCancel(_:) to do that.
@@ -77,6 +85,8 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             
         }
     }
+    
+    
 
     // MARK: Actions
     
