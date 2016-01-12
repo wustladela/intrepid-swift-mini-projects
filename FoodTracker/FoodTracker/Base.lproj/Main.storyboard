@@ -101,7 +101,7 @@
                     <navigationItem key="navigationItem" title="New Meal" id="Dyp-Mk-T5v">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MHe-o0-faP">
                             <connections>
-                                <segue destination="uGb-v1-Nt1" kind="unwind" unwindAction="unwindToMeallist:" id="NkK-ms-FJ2"/>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="Px0-iA-AhA"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="AGf-QV-z5o">
