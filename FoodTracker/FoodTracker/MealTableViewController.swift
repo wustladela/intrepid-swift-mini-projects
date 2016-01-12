@@ -29,6 +29,7 @@ class MealTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     
+    // to address the problem of alert view bug: without this, editing a new item will not trigger the alert view correctly, and the alert view will end up appearing at an existing view causing the exiting view to fail to exit and the app stops.
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         saveMeals()
