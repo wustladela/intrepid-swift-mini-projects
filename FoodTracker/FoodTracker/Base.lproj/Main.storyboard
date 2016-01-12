@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="IVn-cw-H7t">
-                                <rect key="frame" x="20" y="80" width="560" height="733"/>
+                                <rect key="frame" x="20" y="80" width="560" height="523"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5f-53-C8y">
                                         <rect key="frame" x="237" y="0.0" width="87" height="21"/>
@@ -28,47 +28,73 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meal name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wzD-RP-1sS">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meal name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wzD-RP-1sS">
                                         <rect key="frame" x="0.0" y="33" width="560" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-Kg-Lom">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-Kg-Lom">
                                         <rect key="frame" x="205" y="75" width="151" height="30"/>
                                         <state key="normal" title="Set Default Label Text"/>
                                         <connections>
                                             <action selector="mealButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Zj-o5-Nni"/>
                                         </connections>
                                     </button>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="DHM-pM-SnI">
-                                        <rect key="frame" x="0.0" y="117" width="560" height="560"/>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="500" image="DefaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="DHM-pM-SnI">
+                                        <rect key="frame" x="0.0" y="117" width="560" height="350"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="560" id="T90-Gi-sEa"/>
+                                            <constraint firstAttribute="height" constant="350" id="T90-Gi-sEa"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="d32-2f-1a7" appends="YES" id="i51-G9-zul"/>
                                         </connections>
                                     </imageView>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ONd-sI-4tk" customClass="RatingControl" customModule="MyFoodTracker" customModuleProvider="target">
-                                        <rect key="frame" x="160" y="689" width="240" height="44"/>
+                                        <rect key="frame" x="160" y="479" width="240" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ONd-sI-4tk" secondAttribute="height" multiplier="60:11" id="q0g-x0-KS4"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="q0g-x0-KS4"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ONd-sI-4tk" secondAttribute="trailing" constant="160" id="1Lz-ip-Sps"/>
                                     <constraint firstItem="wzD-RP-1sS" firstAttribute="leading" secondItem="IVn-cw-H7t" secondAttribute="leading" id="GBD-gi-7NJ"/>
                                     <constraint firstItem="DHM-pM-SnI" firstAttribute="top" secondItem="IVn-cw-H7t" secondAttribute="top" constant="117" id="MNF-oR-hsc"/>
+                                    <constraint firstItem="ONd-sI-4tk" firstAttribute="centerX" secondItem="IVn-cw-H7t" secondAttribute="centerX" id="Mx7-uG-abJ"/>
+                                    <constraint firstItem="ONd-sI-4tk" firstAttribute="leading" secondItem="IVn-cw-H7t" secondAttribute="leading" constant="160" id="R0U-xI-b9u"/>
                                     <constraint firstItem="DHM-pM-SnI" firstAttribute="top" secondItem="oi3-Kg-Lom" secondAttribute="bottom" constant="12" id="Uyz-eN-5j0"/>
+                                    <constraint firstAttribute="bottom" secondItem="ONd-sI-4tk" secondAttribute="bottom" constant="20" symbolic="YES" id="cGi-Q3-6Jn"/>
                                     <constraint firstAttribute="trailing" secondItem="wzD-RP-1sS" secondAttribute="trailing" id="y6R-1e-4IZ"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1Lz-ip-Sps"/>
+                                        <exclude reference="R0U-xI-b9u"/>
+                                        <exclude reference="cGi-Q3-6Jn"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ONd-sI-4tk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G2O-6Z-p1D"/>
                             <constraint firstItem="IVn-cw-H7t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Qma-SB-8hg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ONd-sI-4tk" secondAttribute="trailing" constant="160" id="cF1-G5-c80"/>
                             <constraint firstItem="IVn-cw-H7t" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="cSb-L3-USk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IVn-cw-H7t" secondAttribute="trailing" id="nse-lC-tRI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cF1-G5-c80"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="New Meal" id="Dyp-Mk-T5v">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MHe-o0-faP"/>
@@ -103,7 +129,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b76-2v-M87" id="1PL-0p-9aL">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sqW-1C-7eF">
