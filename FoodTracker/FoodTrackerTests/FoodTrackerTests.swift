@@ -7,6 +7,14 @@
 //
 
 import XCTest
+
+class Meal {
+    var name = ""
+    func testState() {
+        name = "changed"
+    }
+}
+
 @testable import MyFoodTracker
 
 class FoodTrackerTests: XCTestCase {
@@ -21,16 +29,28 @@ class FoodTrackerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testMealNameValidity() {
+        let mealvc = MealViewController()
+        let validMealName = "Dinner"
+        XCTAssertTrue(mealvc.isValidMealName(validMealName))
+        
+        let invalidMealName = ""
+        XCTAssertFalse(mealvc.isValidMealName(invalidMealName))
     }
     
+    func testExample() {
+        let myMeal = MyFoodTracker.Meal(name: "new meal", photo: nil, rating: 3)
+        let testMeal = Meal()
+        testMeal.testState()
+        XCTAssert(testMeal.name == "changed", "meal name should change after calling testState()")
+    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    
     
 }

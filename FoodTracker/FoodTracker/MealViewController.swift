@@ -90,7 +90,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             let name = self.mealInput.text ?? ""
             let photo = self.photoImageView.image
             let rating = self.ratingControl.rating
-            
+             
             // Set the meal to be passed to MealTableViewController after the unwind segue.
             meal = Meal(name: name, photo: photo, rating: rating)
             
@@ -122,7 +122,11 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     func checkValidMealName() {
         let text = mealInput.text ?? ""
-        saveButton.enabled = !text.isEmpty
+        saveButton.enabled = isValidMealName(text)
+    }
+    
+    func isValidMealName(text: String) -> Bool {
+        return !text.isEmpty
     }
     
     //tap gestures - tap anywhere to finish editing

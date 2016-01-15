@@ -37,7 +37,7 @@
 		89189E211C42DCC3009050A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89189E241C42DCC3009050A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89189E261C42DCC3009050A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		89189E2B1C42DCC3009050A4 /* MyFoodTracker.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFoodTracker.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		89189E2B1C42DCC3009050A4 /* MyFoodTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFoodTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89189E2F1C42DCC3009050A4 /* FoodTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTrackerTests.swift; sourceTree = "<group>"; };
 		89189E311C42DCC3009050A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89189E3A1C432384009050A4 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				89189E171C42DCC3009050A4 /* MyFoodTracker.app */,
-				89189E2B1C42DCC3009050A4 /* MyFoodTracker.xctest */,
+				89189E2B1C42DCC3009050A4 /* MyFoodTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,7 +143,7 @@
 			);
 			name = MyFoodTrackerTests;
 			productName = FoodTrackerTests;
-			productReference = 89189E2B1C42DCC3009050A4 /* MyFoodTracker.xctest */;
+			productReference = 89189E2B1C42DCC3009050A4 /* MyFoodTrackerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -368,7 +368,7 @@
 				INFOPLIST_FILE = FoodTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = appleReference.FoodTrackerTests;
-				PRODUCT_NAME = MyFoodTracker;
+				PRODUCT_NAME = MyFoodTrackerTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyFoodTracker.app/MyFoodTracker";
 			};
 			name = Debug;
@@ -380,7 +380,7 @@
 				INFOPLIST_FILE = FoodTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = appleReference.FoodTrackerTests;
-				PRODUCT_NAME = MyFoodTracker;
+				PRODUCT_NAME = MyFoodTrackerTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyFoodTracker.app/MyFoodTracker";
 			};
 			name = Release;
